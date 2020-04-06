@@ -9,13 +9,17 @@
  *  i jakie ma glowne cechy.
  */
 class UkladRownanLiniowych {
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
-   */
-  public:
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
-   */    
+  Macierz A;
+  Wektor B;
+public:
+  UkladRownanL();
+  UkladRownanL(Macierz AA, Wektor BB);
+
+  Macierz zworc_macierz();
+  void zmien_macierz(Macierz MM);
+  /*analogicznie dla wektora */
+
+  Wektor oblicz();
 };
 
 

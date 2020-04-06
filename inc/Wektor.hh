@@ -10,14 +10,39 @@
  *  i jakie ma glowne cechy.
  */
 class Wektor {
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
-   */
+
+  Wektor tab[ROZMIAR]
+  
   public:
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
-   */    
+
+  Wektor();
+  Wektor(double x, double y, double z);
+  
+  double dlugosc() const; // modul
+  
+  Wektor & operator += (const Wektor & W2); // W1 += W2  , W1 += W3 += W4
+  const Wektor & operator + (const Wektor & W2) const; // W1 + W2
+  const Wektor & operator - (const Wektor & W2) const; // W1 - W2
+  double operator * (const Wektor & W2) const; // skalarnie
+  
+  const Wektor & operator * (double l) const; // W1 * 2
+  const Wektor & operator / (double l) const; // W1 / 2
+  Wektor operator *(double l, Wektor W2); // 3 * W2
+  
+  bool operator == (const Wektor & W2) const;
+  bool operator != (const Wektor & W2) const;
+
+  const double & operator[] (ind index) const;
+  double & operator[] (ind index) {
+    if (index < 0 || index > ROZMIAR) {
+      cerr << "indeks poza zakresem" << endl;
+      exit(1);
+    }    
+  }
+      
 };
+
+
 
 
 /*

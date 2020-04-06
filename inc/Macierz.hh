@@ -9,15 +9,39 @@
  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
  *  i jakie ma glowne cechy.
  */
-class Macierz {
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
-   */
-  public:
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
-   */    
+class MacierzKW {
+
+  Wektor tab[ROZMIAR];
+
+public:
+
+  MacierzKw();
+  MacierzKw(const Wektor & tab[]);
+  MacierzKw(Wektor A, Wektor B, Wektor C);
+
+  double wyznacznik();// rozwiniecje laplace'a, gaussa, sarrusa
+  // double wyznacznikGauss(); double wyznacznik(metoda met = Gauss) <- enum
+
+  int rzad();
+
+  const MacierzKw & transponuj() const;
+  void transponuj();
+
+  const MacierzKw & odwroc() const;
+  void odwroc();
+  
+  const MacierzKw & operator*(const MacierzKw & M2);
+  const MacierzKw & operator+(const MacierzKw & M2);
+  const MacierzKw & operator-(const MacierzKw & M2);
+  const MacierzKw & operator*(double l);
+  const Wektor & operator*(const Wektor & W2);
+  const MacierzKw & operator*(double l, const MacierzKw & M2);
+
+  const Wektor & operator[] (ind index) const;
+  Wektor & operator[] (ind index); // M[2][0] - zerowy element, drugiego wektora
+  
 };
+
 
 
 /*
