@@ -1,66 +1,48 @@
 #ifndef MACIERZ_HH
 #define MACIERZ_HH
 
+#include "Wektor.hh"
 #include "rozmiar.h"
 #include <iostream>
 
 
-/*
- *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
- *  i jakie ma glowne cechy.
- */
-class MacierzKW {
+class MacierzKw {
 
   Wektor tab[ROZMIAR];
 
 public:
 
   MacierzKw();
-  MacierzKw(const Wektor & tab[]);
+  MacierzKw(const Wektor table[]);
   MacierzKw(Wektor A, Wektor B, Wektor C);
 
-  double wyznacznik();// rozwiniecje laplace'a, gaussa, sarrusa
-  // double wyznacznikGauss(); double wyznacznik(metoda met = Gauss) <- enum
+  double wyznacznik() const;
 
-  int rzad();
+  MacierzKw transponuj() const;
 
-  const MacierzKw & transponuj() const;
-  void transponuj();
-
-  const MacierzKw & odwroc() const;
-  void odwroc();
+  Wektor  operator * (const Wektor & W2) const;
   
-  const MacierzKw & operator*(const MacierzKw & M2);
-  const MacierzKw & operator+(const MacierzKw & M2);
-  const MacierzKw & operator-(const MacierzKw & M2);
-  const MacierzKw & operator*(double l);
-  const Wektor & operator*(const Wektor & W2);
-  const MacierzKw & operator*(double l, const MacierzKw & M2);
+  MacierzKw  operator * (MacierzKw & M2) const;
+  MacierzKw  operator + (const MacierzKw & M2) const;
+  MacierzKw  operator - (const MacierzKw & M2) const;
+  
+  MacierzKw  operator * (double l) const;
+  MacierzKw  operator / (double l) const;
 
-  const Wektor & operator[] (ind index) const;
-  Wektor & operator[] (ind index); // M[2][0] - zerowy element, drugiego wektora
+  const Wektor & operator[] (int index) const;
+  Wektor & operator[] (int index); // M[2][0] - zerowy element, drugiego wektora
+
+  const Wektor zwrocKolumna (int index);
+  void zmienKolumna (int index, Wektor W);
   
 };
 
 
+const MacierzKw operator * (double l, const MacierzKw & M2);
 
-/*
- * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
- * Szczegoly dotyczace zalecen realizacji opisow mozna
- * znalezc w pliku:
- *    ~bk/edu/kpo/zalecenia.txt 
- */
-std::istream& operator >> (std::istream &Strm, Macierz &Mac);
+std::istream& operator >> (std::istream &Strm, MacierzKw &Mac);
 
-/*
- * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
- * Szczegoly dotyczace zalecen realizacji opisow mozna
- * znalezc w pliku:
- *    ~bk/edu/kpo/zalecenia.txt 
- */
-std::ostream& operator << (std::ostream &Strm, const Macierz &Mac);
+std::ostream& operator << (std::ostream &Strm, const MacierzKw &Mac);
 
 
 #endif
