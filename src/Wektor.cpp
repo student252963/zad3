@@ -17,9 +17,9 @@ Wektor::Wektor() {
 Wektor::Wektor(double x, double y, double z) {
   
   int i=0;
-  this->tab[0] = x;
-  this->tab[1] = y;
-  this->tab[2] = z;
+  this->tab[i] = x;
+  this->tab[++i] = y;
+  this->tab[++i] = z;
 }
 
 

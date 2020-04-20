@@ -19,20 +19,21 @@ using namespace std;
 
 int main()
 {
-  UkladRownanL UklRown;   // To tylko przykladowe definicje zmiennej
-  MacierzKw A;
+  UkladRownanL UklRown; 
+
 
   
   cout << endl << " Start programu " << endl << endl;
 
   fstream plik;
-  plik.open("dane.txt" , ios::in);
-  if(plik.good()!=true) {
+  plik.open("dane.dat" , ios::in);
+  if(plik.good()==false) {
     cout << "Nie znaleziono pliku :<"<<endl;
     return 0;
-  }
-  cin >> UklRown;
+  } 
+  plik >> UklRown;
   plik.close();
+  
 
   cout << "Macierz A^T:" << endl;
 
