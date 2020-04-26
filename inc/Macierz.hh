@@ -18,11 +18,12 @@ public:
 
   double wyznacznik() const;
 
-  MacierzKw transponuj() const;
+  const MacierzKw transponuj() const;
+
 
   Wektor  operator * (const Wektor & W2) const;
   
-  MacierzKw  operator * (MacierzKw & M2) const;
+MacierzKw  operator * (MacierzKw & M2) const;
   MacierzKw  operator + (const MacierzKw & M2) const;
   MacierzKw  operator - (const MacierzKw & M2) const;
   
@@ -32,8 +33,8 @@ public:
   const Wektor & operator[] (int index) const;
   Wektor & operator[] (int index); // M[2][0] - zerowy element, drugiego wektora
 
-  const Wektor zwrocKolumna (int index);
-  void zmienKolumna (int index, Wektor W);
+ const Wektor zwrocKolumna (int index);
+ void zmienKolumna (int index, Wektor W);
   
 };
 

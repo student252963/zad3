@@ -5,21 +5,12 @@
 #include "Macierz.hh"
 #include "UkladRownanLiniowych.hh"
 
-
-
 using namespace std;
-
-/*
- * Tu definiujemy pozostale funkcje.
- * Lepiej jednak stworzyc dodatkowy modul
- * i tam je umiescic. Ten przyklad pokazuje
- * jedynie absolutne minimum.
- */
 
 
 int main()
 {
-  UkladRownanL UklRown; 
+  UkladRownanL UklRown;
 
 
   
@@ -30,21 +21,41 @@ int main()
   if(plik.good()==false) {
     cout << "Nie znaleziono pliku :<"<<endl;
     return 0;
-  } 
-  plik >> UklRown;
-  plik.close();
+  }
   
+  plik >>UklRown; 
+  plik.close();
 
-  cout << "Macierz A^T:" << endl;
+  cout<< "Macierz A^T:" << endl
+      << endl;
+  cout<< UklRown.get_A() << endl;
 
-  cout << UklRown.zwroc_macierz() << endl;
+  cout<< "Wektor wyrazow wolnych b:" << endl
+      << endl;
+  cout<< UklRown.get_B() << endl
+      << endl;
 
-  cout << "Wektor wyrazow wolnych b:" << endl;
+  Wektor Wynik = UklRown.oblicz();
+  
+  cout << "Rozwiazanie x = (x1 , x2, x3):" << endl
+       << endl;
+  cout << Wynik <<endl
+       << endl;
 
-  cout << UklRown.zwroc_wektor() << endl;
+  //MacierzKw Mc;
+  //cout<<"Macierz A:"<<endl;
+  //Mc = (UklRown.get_A()).transponuj();
+  //cout<<Mc<<endl;
 
-  cout << "Rozwiazanie x=(x1,x2,x3):" << endl;
-  cout << UklRown.oblicz();
+  Wektor Blad = UklRown.Blad();
+
+  cout << "Wektor bledu:" << endl
+       << "Ax-b = " << "( " << Blad << ')' << endl
+       << endl;
+  cout << "Dlugosc wektora bledu:" << endl
+       << "||Ax-b|| = " << Blad.dlugosc() << endl
+       << endl;
+
 
 
 

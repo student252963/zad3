@@ -12,16 +12,17 @@ class UkladRownanL {
   MacierzKw A;
   Wektor B;
 public:
-  UkladRownanL() {MacierzKw A; Wektor B;}
-  UkladRownanL(MacierzKw AA, Wektor BB) {this->A=AA; this->B=BB;}
+  UkladRownanL() {A=MacierzKw(); B=Wektor();}
+  UkladRownanL(MacierzKw AA, Wektor BB) {A=AA; B=BB;}
 
-  const MacierzKw zwroc_macierz() const {return A;}
-  void zmien_macierz(const MacierzKw & AA) {this->A=AA;}
+  MacierzKw get_A() const {return this->A;}
+  void set_A(const MacierzKw & AA) {this->A=AA;}
 
-  const Wektor zwroc_wektor() const {return B;}
-  void zmien_wektor(const Wektor & BB){this->B=BB;}
+  Wektor get_B() const {return this->B;}
+  void set_B(const Wektor & BB) {this->B=BB;}
 
-  Wektor oblicz();
+  Wektor oblicz() const;
+  Wektor Blad() const;
 };
 
 

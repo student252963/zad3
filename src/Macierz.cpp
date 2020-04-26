@@ -7,9 +7,7 @@ using namespace std;
 MacierzKw::MacierzKw() {
   
   for(int i=0 ; i < ROZMIAR ; i++) {
-    for(int j=0 ; j < ROZMIAR ; j++) {
-      tab[i][j]=0;
-    }
+    this->tab[i] = Wektor();
   }
 }
 
@@ -23,10 +21,11 @@ MacierzKw::MacierzKw(const Wektor table[]) {
 
 
 MacierzKw::MacierzKw(Wektor A, Wektor B, Wektor C) {
-
-  this->tab[1] = A;
-  this->tab[2] = B;
-  this->tab[3] = C;
+  
+  int i=0;
+  this->tab[i] = A;
+  this->tab[++i] = B;
+  this->tab[++i] = C;
 }
 
 /**************************************/
@@ -47,7 +46,7 @@ double MacierzKw::wyznacznik() const {
 	}
       }
       if(M[i][i] == 0) {
-	cerr << "Macierz osobliwa";
+	cerr << "Macierz osobliwa" << endl;
 	det = 0;
 	return det;
       }
@@ -68,16 +67,18 @@ double MacierzKw::wyznacznik() const {
   
 /**************************************/
 
-MacierzKw MacierzKw::transponuj() const {
+const MacierzKw MacierzKw::transponuj() const {
 
-  MacierzKw M;
+  MacierzKw Mac;
   for(int i=0 ; i < ROZMIAR ; i++) {
     for(int j=0 ; j < ROZMIAR ; j++) {
-      M[j][i] = tab[i][j];
+      Mac[j][i]=(*this)[i][j];
     }
   }
-  return M;
-    }
+  return Mac;
+}
+
+
 
 /**************************************/
 
@@ -101,7 +102,7 @@ MacierzKw  MacierzKw::operator * (MacierzKw & M2) const {
     }
   }
   return MIM;
-}
+  } 
 
 
 MacierzKw  MacierzKw::operator + (const MacierzKw & M2) const {
@@ -160,7 +161,8 @@ const Wektor & MacierzKw::operator[] (int index) const {
       cerr << "indeks poza zakresem" << endl;
       exit(1);
     }
-    else   return tab[index];
+    else
+      return this->tab[index];
 }
 
 
@@ -170,10 +172,10 @@ Wektor & MacierzKw::operator[] (int index) {
       cerr << "indeks poza zakresem" << endl;
       exit(1);
     }
-    else   return tab[index];
+    else
+      return this->tab[index];
 }
 
-/************************************/
 
 const Wektor MacierzKw::zwrocKolumna (int index) {
 
@@ -202,9 +204,9 @@ void MacierzKw::zmienKolumna (int index, Wektor W) {
       tab[i][index] = W[i];
     }
   }
-}
+  } 
 
-/***********************************************/
+
 
 const MacierzKw operator * (double l, const MacierzKw & M2) {
 
@@ -220,7 +222,7 @@ const MacierzKw operator * (double l, const MacierzKw & M2) {
 istream& operator >> (istream &Strm, MacierzKw &Mac) {
 
   for(int i=0 ; i < ROZMIAR ; i++) {
-    cin >> Mac[i];
+    Strm >> Mac[i];
   }
   return Strm;
 }
@@ -229,7 +231,10 @@ istream& operator >> (istream &Strm, MacierzKw &Mac) {
 ostream& operator << (ostream &Strm, const MacierzKw &Mac) {
 
   for(int i=0 ; i < ROZMIAR ; i++) {
-    cout << Mac[i] << endl;
+    for(int j=0 ; j < ROZMIAR ; j++) {      
+      Strm << Mac[i][j] << " ";
+    }
+    Strm << endl;
   }
   return Strm;
 }

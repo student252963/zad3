@@ -11,11 +11,13 @@ using namespace std;
  */
 
 
-Wektor UkladRownanL::oblicz() {
+/*******************************************/
+
+Wektor UkladRownanL::oblicz() const {
 
   UkladRownanL Oblicz = (*this);
-  MacierzKw a = Oblicz.zwroc_macierz();
-  Wektor b = Oblicz.zwroc_wektor();
+  MacierzKw a = Oblicz.get_A();
+  Wektor b = Oblicz.get_B();
   Wektor Wynik;
   double det = a.wyznacznik();
 
@@ -25,31 +27,43 @@ Wektor UkladRownanL::oblicz() {
   else {
     for(int i=0 ; i < ROZMIAR ; i++) {
 
-      A = Oblicz.zwroc_macierz();
-      A[i] = b;
+      a = Oblicz.get_A();
+      a[i] = b;
       double det_w = a.wyznacznik();
       Wynik[i] = det_w / det;
     }
   }
   return Wynik;
+  } 
+
+
+Wektor UkladRownanL::Blad() const {
+
+  UkladRownanL Uk=(*this);
+  MacierzKw Mac;
+  Wektor Blad;
+  Mac = Uk.get_A();
+  Blad = Mac.transponuj() * Uk.oblicz() - Uk.get_B();
+  return Blad;
 }
 
+  
 /************************************************/
 
 istream& operator >> (istream &Strm, UkladRownanL &UklRown) {
 
   MacierzKw a;
   Wektor b;
-  cin >> a >> b;
-  UklRown.zmien_macierz(a.transponuj());
-  UklRown.zmien_wektor(b);
+  Strm >> a >> b;
+  UklRown.set_A(a);
+  UklRown.set_B(b);
   return Strm;
 }
 
 
 ostream& operator << (ostream &Strm, const UkladRownanL &UklRown) {
 
-  cout << UklRown.zwroc_macierz() << UklRown.zwroc_wektor() << endl;
+  Strm << UklRown.get_A() << UklRown.get_B() << endl;
   return Strm;
 }
   

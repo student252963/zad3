@@ -151,7 +151,7 @@ Wektor operator * (double l, Wektor W2) {
 istream& operator >> (istream &Strm, Wektor &Wek) {
 
   for(int i=0 ; i < ROZMIAR ; i++) {
-    cin >> Wek[i];
+    Strm >> Wek[i];
   }
   return Strm;
 }
@@ -159,7 +159,7 @@ istream& operator >> (istream &Strm, Wektor &Wek) {
 ostream& operator << (ostream &Strm, const Wektor &Wek) {
 
   for(int i=0 ; i < ROZMIAR ; i++) {
-    cout << Wek[i] << " ";
+    Strm << Wek[i] << " ";
   }
   return Strm;
 }

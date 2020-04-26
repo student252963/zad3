@@ -12,15 +12,13 @@ class Wektor {
   
 public:
 
-  Wektor(); //done
-  Wektor(double x, double y, double z); //done
-  Wektor(double table[]); //done
+  Wektor(); 
+  Wektor(double x, double y, double z); 
+  Wektor(double table[]);
   
   double dlugosc() const;
-  double operator * (const Wektor & W2) const; // skalarnie
   
-  /* Wektor & operator += (const Wektor & W2);     // W1 += W2  , W1 += W3 += W4 */
-
+  double operator * (const Wektor & W2) const; // skalarnie
   
   Wektor operator + (const Wektor & W2) const; // W1 + W2
   Wektor operator - (const Wektor & W2) const; // W1 - W2  
@@ -30,8 +28,8 @@ public:
   bool operator == (const Wektor & W2) const;
   bool operator != (const Wektor & W2) const;
 
-  const double & operator[] (int index) const;  //done
-  double & operator[] (int index); //done
+  const double & operator[] (int index) const; 
+  double & operator[] (int index); 
       
 };
 
